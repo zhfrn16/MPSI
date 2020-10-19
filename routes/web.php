@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'AdminController@index')->name('Admin.home');
@@ -26,3 +26,10 @@ Route::get('/dosen', 'DosenController@index')->name('Dosen.home');
 
 Route::resource('user', 'UserController');
 Route::get('dataTableUSer', 'UserController@dataTable')->name('dataTableUser');
+
+Route::get('/logina', function(){
+    return view('login.login');
+})->name('login');
+Route::post('/masuk', 'loginController@login')->name('masuk');
+Route::get('/keluar', 'loginController@logout')->name('keluar');
+
