@@ -46,6 +46,34 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        // MultiLogin Fandy
+        'mahasiswa' => [
+            'driver' => 'session',
+            'provider' => 'mahasiswa',
+        ],
+
+        'apimahasiswa' => [
+            'driver' => 'token',
+            'provider' => 'mahasiswa',
+        ],
+        'dosen' => [
+            'driver' => 'session',
+            'provider' => 'dosen',
+        ],
+
+        'apidosen' => [
+            'driver' => 'token',
+            'provider' => 'dosen',
+        ],
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        'apiuser' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
     ],
 
     /*
@@ -69,6 +97,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'mahasiswa' => [
+            'driver' => 'eloquent',
+            'model' => App\login_mahasiswa::class,
+        ],
+        'dosen' => [
+            'driver' => 'eloquent',
+            'model' => App\login_dosen::class,
         ],
 
         // 'users' => [
