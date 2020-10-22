@@ -90,48 +90,30 @@
                     <div class="card-header">Daftar Permintaan Bimbingan TA</div>
 
                     <div class="card-body">
-                      <div class="table-responsive">
-                        <table class="table align-items-center table-dark">
-                            <thead class="thead-dark">
-                            <tr>
-                               
-                                <th>NIM</th>
-                                <th>Nama Mahasiswa</th>
-                                <th>Ide TA</th>
-                                <th>Aksi</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              
-                            @forelse ($data as $permintaan)
-                            <tr>
-                              <td>{{$permintaan->rancangan->mahasiswa->nim}}</td>
-                              <td>{{$permintaan->rancangan->mahasiswa->nama}}</td>
-                              <td>{{$permintaan->rancangan->deskripsi }}</td>
-                              <td>
-                                @if ($permintaan->rancangan->status==0)
-                                <a href="{{ route('terima', [$permintaan->id_rancangan]) }}" type="button" class="btn btn-primary"><i class="fas fa-check"></i></a>
-                                <a href="{{ route('tolak', [$permintaan->id_rancangan]) }}" type="button" class="btn btn-primary"><i class="fa fa-ban" aria-hidden="true"></i>
-                                </i></a>
-
-                                @elseif($permintaan->rancangan->status==1)
-                                  Diterima
-                                @elseif($permintaan->rancangan->status==2)
-                                  Ditolak
-                                @endif
-                              </td>
-                            </tr>
-                            @empty
-                            <tr>
-                              <td colspan="5">Belum ada Permintaan</td>
-                          </tr>
-                            @endforelse
-                          
-                            </tbody>
-                        </table>
-                    
-                    </div>
-                </div>
+                    <form action="{{route('tolaks',[$id])}}" method="Post">
+                            @csrf
+                        {{-- Kode Webinar --}}
+                        <div class="form-group">
+                            <label class="bmd-label-floating" for="id">Nama Mahasiswa</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="id">@</span>
+                                </div>
+                            <input disabled type="text" class="form-control" name="id" value="{{$data->mahasiswa->nama}}" aria-label="Username" aria-describedby="id">
+                            </div>
+                        </div>
+                        {{-- Judul Webinar --}}
+                        <div class="form-group">
+                            <label class="bmd-label-floating" for="catatan_dosen">Alasan Menolak</label>
+                            <div class="input-group">
+                            <textarea type="text" rows="10" cols="30" class="form-control" name="catatan_dosen" aria-label="catatan_dosen" aria-describedby="catatan_dosen"></textarea>
+                            </div>
+                        </div>
+                        {{-- Submit --}}
+                        <button type="submit" class="btn btn-outline-primary">Submit</button>
+        
+                        </form>
+                     </div>
             </div>
         </div>
     </div>
